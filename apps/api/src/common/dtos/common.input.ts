@@ -15,7 +15,7 @@ export type RestrictProperties<T, U> = {
 // implements Prisma.DateTimeFilter
 @InputType()
 export class DateTimeFilter {
-  equals?: string
+  equals?: string;
   in?: string[]
   notIn?: string[]
   lt?: string
@@ -31,7 +31,7 @@ registerEnumType(Prisma.QueryMode, {
 // implements Required<Prisma.StringFilter>
 @InputType()
 export class StringFilter {
-  equals?: string
+  equals?: string;
   in?: string[]
   notIn?: string[]
   lt?: string
@@ -69,7 +69,6 @@ export class IntFilter {
   gt?: number
   gte?: number
 }
-
 
 @InputType()
 export class FloatFilter {
