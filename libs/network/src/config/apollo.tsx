@@ -17,20 +17,20 @@ export const ApolloProvider = ({ children }: IApolloProviderProps) => {
     uri: process.env.NEXT_PUBLIC_API_URL + '/graphql',
   })
 
-  // const authLink = setContext(async (_, { headers }) => {
-  //   const token = await fetch('/api/auth/token').then((res) => res.json())
+  const authLink = setContext(async (_, { headers }) => {
+    const token = await fetch('/api/auth/token').then((res) => res.json())
 
-  //   return {
-  //     headers: {
-  //       ...headers,
-  //       authorization: token ? `Bearer ${token}` : '',
-  //     },
-  //   }
-  // })
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    }
+  })
 
   const apolloClient = new ApolloClient({
-    // link: authLink.concat(httpLink),
-    link: httpLink,
+    link: authLink.concat(httpLink),
+    // link: httpLink,
     cache: new InMemoryCache(),
   })
   return <Provider client={apolloClient}>{children}</Provider>
